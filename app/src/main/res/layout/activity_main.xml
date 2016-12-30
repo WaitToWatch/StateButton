@@ -51,6 +51,8 @@
             android:padding="10dp"
             android:text="with radius"
             android:textColor="@android:color/white"
+            app:normalStrokeColor="@android:color/white"
+            app:normalStrokeWidth="2dp"
             app:normalBackgroundColor="@color/colorPrimary"
             app:pressedBackgroundColor="@color/colorPrimaryDark"
             app:radius="10dp"
@@ -68,7 +70,6 @@
             app:normalBackgroundColor="@color/colorPrimary"
             app:pressedBackgroundColor="@color/colorPrimaryDark"
             app:round="true"
-            app:radius="2dp"
             app:unableBackgroundColor="@android:color/holo_red_light"/>
 
         <deadline.statebutton.StateButton
@@ -93,7 +94,7 @@
             android:padding="10dp"
             android:text="with dash"
             app:radius="5dp"
-            app:strokeDashGap="5dp"
+            app:strokeDashGap="99dp"
             app:strokeDashWidth="5dp"
             app:normalStrokeColor="@android:color/white"
             app:normalStrokeWidth="2dp"
@@ -104,6 +105,71 @@
             app:unableStrokeColor="@android:color/holo_orange_dark"
             app:unableStrokeWidth="2dp"
             app:unableTextColor="@android:color/holo_orange_dark"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <deadline.statebutton.StateButton
+                android:id="@+id/test1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:text="无"
+                app:radius="5dp"
+                app:normalStrokeColor="@android:color/white"
+                app:normalStrokeWidth="2dp"
+                app:normalTextColor="@android:color/white"
+                app:pressedStrokeColor="@color/colorPrimary"
+                app:pressedStrokeWidth="2dp"
+                app:pressedTextColor="@color/colorPrimary"
+                app:unableStrokeColor="@android:color/holo_orange_dark"
+                app:unableStrokeWidth="2dp"
+                app:unableTextColor="@android:color/holo_orange_dark"/>
+
+            <deadline.statebutton.StateButton
+                android:id="@+id/test2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:text="状态1"
+                app:radius="5dp"
+                app:normalStrokeColor="@android:color/white"
+                app:normalStrokeWidth="2dp"
+                app:normalTextColor="@android:color/white"
+                app:pressedStrokeColor="@color/colorPrimary"
+                app:pressedStrokeWidth="2dp"
+                app:pressedTextColor="@color/colorPrimary"
+                app:unableStrokeColor="@android:color/holo_orange_dark"
+                app:unableStrokeWidth="2dp"
+                app:unableTextColor="@android:color/holo_orange_dark"/>
+
+            <deadline.statebutton.StateButton
+                android:id="@+id/test3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:text="状态2"
+                app:radius="5dp"
+                app:normalStrokeColor="@android:color/white"
+                app:normalStrokeWidth="2dp"
+                app:normalTextColor="@android:color/white"
+                app:pressedStrokeColor="@color/colorPrimary"
+                app:pressedStrokeWidth="2dp"
+                app:pressedTextColor="@color/colorPrimary"
+                app:unableStrokeColor="@android:color/holo_orange_dark"
+                app:unableStrokeWidth="2dp"
+                app:unableTextColor="@android:color/holo_orange_dark"/>
+        </LinearLayout>
+
+
 
         <deadline.statebutton.StateButton
             android:id="@+id/stroke_test"
@@ -117,13 +183,16 @@
             app:normalStrokeColor="@android:color/white"
             app:normalStrokeWidth="2dp"
             app:normalTextColor="@android:color/white"
-            app:pressedStrokeColor="@android:color/holo_red_light"
+            app:pressedStrokeColor="@color/colorPrimary"
             app:pressedStrokeWidth="2dp"
-            app:pressedTextColor="@android:color/holo_red_light"
+            app:pressedTextColor="@color/colorPrimary"
             app:unableStrokeColor="@android:color/holo_orange_dark"
             app:unableStrokeWidth="2dp"
             app:unableTextColor="@android:color/holo_orange_dark"/>
-
+        <!--设置app:normalStrokeWidth="2dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedStrokeWidth="2dp"
+            app:pressedStrokeColor="@android:color/white"保持一致-->
         <deadline.statebutton.StateButton
             android:id="@+id/stroke_background_test"
             android:layout_width="wrap_content"
@@ -169,7 +238,7 @@
             app:normalStrokeColor="@android:color/white"
             app:normalStrokeWidth="2dp"
             app:normalTextColor="@android:color/white"
-            app:pressedBackgroundColor="@color/colorPrimaryDark"
-            app:pressedTextColor="@android:color/white"/>
+            app:pressedBackgroundColor="@android:color/white"
+            app:pressedTextColor="@android:color/black"/>
     </LinearLayout>
 </ScrollView>

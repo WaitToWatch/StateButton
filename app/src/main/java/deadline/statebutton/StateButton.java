@@ -17,7 +17,7 @@ import android.util.AttributeSet;
  * @time 2016-11-07
  */
 
-public class StateButton extends AppCompatButton{
+public class StateButton extends AppCompatButton {
 
     //text color
     private int mNormalTextColor = 0;
@@ -34,7 +34,7 @@ public class StateButton extends AppCompatButton{
 
     //stroke
     private float mStrokeDashWidth = 0;
-    private float mStrokeDashGap = 0;
+    private float mStrokeDashGap = 0;//好像无效
     private int mNormalStrokeWidth = 0;
     private int mPressedStrokeWidth = 0;
     private int mUnableStrokeWidth = 0;
@@ -73,9 +73,9 @@ public class StateButton extends AppCompatButton{
         states = new int[4][];
 
         Drawable drawable = getBackground();
-        if(drawable != null && drawable instanceof StateListDrawable){
+        if (drawable != null && drawable instanceof StateListDrawable) {
             mStateBackground = (StateListDrawable) drawable;
-        }else{
+        } else {
             mStateBackground = new StateListDrawable();
         }
 
@@ -84,10 +84,10 @@ public class StateButton extends AppCompatButton{
         mUnableBackground = new GradientDrawable();
 
         //pressed, focused, normal, unable
-        states[0] = new int[] { android.R.attr.state_enabled, android.R.attr.state_pressed };
-        states[1] = new int[] { android.R.attr.state_enabled, android.R.attr.state_focused };
-        states[3] = new int[] { -android.R.attr.state_enabled};
-        states[2] = new int[] { android.R.attr.state_enabled };
+        states[0] = new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed};
+        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
+        states[3] = new int[]{-android.R.attr.state_enabled};
+        states[2] = new int[]{android.R.attr.state_enabled};
 
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.StateButton);
 
@@ -137,6 +137,9 @@ public class StateButton extends AppCompatButton{
         mStateBackground.addState(states[1], mPressedBackground);
         mStateBackground.addState(states[3], mUnableBackground);
         mStateBackground.addState(states[2], mNormalBackground);
+        if (mNormalStrokeColor == mPressedStrokeColor) {
+            mStateBackground.setEnterFadeDuration(mDuration);
+        }
         setBackgroundDrawable(mStateBackground);
         a.recycle();
     }
@@ -148,7 +151,9 @@ public class StateButton extends AppCompatButton{
         setRound(mRound);
     }
 
-    /****************** stroke color *********************/
+    /******************
+     * stroke color
+     *********************/
 
     public void setNormalStrokeColor(@ColorInt int normalStrokeColor) {
         this.mNormalStrokeColor = normalStrokeColor;
@@ -165,14 +170,16 @@ public class StateButton extends AppCompatButton{
         setStroke(mUnableBackground, mUnableStrokeColor, mUnableStrokeWidth);
     }
 
-    public void setStateStrokeColor(@ColorInt int normal, @ColorInt int pressed, @ColorInt int unable){
+    public void setStateStrokeColor(@ColorInt int normal, @ColorInt int pressed, @ColorInt int unable) {
         mNormalStrokeColor = normal;
         mPressedStrokeColor = pressed;
         mUnableStrokeColor = unable;
         setStroke();
     }
 
-    /****************** stroke width *********************/
+    /******************
+     * stroke width
+     *********************/
 
     public void setNormalStrokeWidth(int normalStrokeWidth) {
         this.mNormalStrokeWidth = normalStrokeWidth;
@@ -189,10 +196,10 @@ public class StateButton extends AppCompatButton{
         setStroke(mUnableBackground, mUnableStrokeColor, mUnableStrokeWidth);
     }
 
-    public void setStateStrokeWidth(int normal, int pressed, int unable){
+    public void setStateStrokeWidth(int normal, int pressed, int unable) {
         mNormalStrokeWidth = normal;
         mPressedStrokeWidth = pressed;
-        mUnableStrokeWidth= unable;
+        mUnableStrokeWidth = unable;
         setStroke();
     }
 
@@ -202,7 +209,7 @@ public class StateButton extends AppCompatButton{
         setStroke();
     }
 
-    private void setStroke(){
+    private void setStroke() {
         setStroke(mNormalBackground, mNormalStrokeColor, mNormalStrokeWidth);
         setStroke(mPressedBackground, mPressedStrokeColor, mPressedStrokeWidth);
         setStroke(mUnableBackground, mUnableStrokeColor, mUnableStrokeWidth);
@@ -212,7 +219,9 @@ public class StateButton extends AppCompatButton{
         mBackground.setStroke(mStrokeWidth, mStrokeColor, mStrokeDashWidth, mStrokeDashGap);
     }
 
-    /********************   radius  *******************************/
+    /********************
+     * radius
+     *******************************/
 
     public void setRadius(@FloatRange(from = 0) float radius) {
         this.mRadius = radius;
@@ -221,23 +230,25 @@ public class StateButton extends AppCompatButton{
         mUnableBackground.setCornerRadius(mRadius);
     }
 
-    public void setRound(boolean round){
+    public void setRound(boolean round) {
         this.mRound = round;
         int height = getMeasuredHeight();
-        if(mRound){
+        if (mRound) {
             setRadius(height / 2f);
         }
     }
 
-    public void setRadius(float[] radii){
+    public void setRadius(float[] radii) {
         mNormalBackground.setCornerRadii(radii);
         mPressedBackground.setCornerRadii(radii);
         mUnableBackground.setCornerRadii(radii);
     }
 
-    /********************  background color  **********************/
+    /********************
+     * background color
+     **********************/
 
-    public void setStateBackgroundColor(@ColorInt int normal, @ColorInt int pressed, @ColorInt int unable){
+    public void setStateBackgroundColor(@ColorInt int normal, @ColorInt int pressed, @ColorInt int unable) {
         mPressedBackgroundColor = normal;
         mNormalBackgroundColor = pressed;
         mUnableBackgroundColor = unable;
@@ -261,21 +272,25 @@ public class StateButton extends AppCompatButton{
         mUnableBackground.setColor(mUnableBackgroundColor);
     }
 
-    /*******************alpha animation duration********************/
-    public void setAnimationDuration(@IntRange(from = 0)int duration){
+    /*******************
+     * alpha animation duration
+     ********************/
+    public void setAnimationDuration(@IntRange(from = 0) int duration) {
         this.mDuration = duration;
         mStateBackground.setEnterFadeDuration(mDuration);
     }
 
-    /***************  text color   ***********************/
+    /***************
+     * text color
+     ***********************/
 
     private void setTextColor() {
-        int[] colors = new int[] {mPressedTextColor, mPressedTextColor, mNormalTextColor, mUnableTextColor};
+        int[] colors = new int[]{mPressedTextColor, mPressedTextColor, mNormalTextColor, mUnableTextColor};
         mTextColorStateList = new ColorStateList(states, colors);
         setTextColor(mTextColorStateList);
     }
 
-    public void setStateTextColor(@ColorInt int normal, @ColorInt int pressed, @ColorInt int unable){
+    public void setStateTextColor(@ColorInt int normal, @ColorInt int pressed, @ColorInt int unable) {
         this.mNormalTextColor = normal;
         this.mPressedTextColor = pressed;
         this.mUnableTextColor = unable;
